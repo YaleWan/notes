@@ -319,7 +319,7 @@ React 元素的事件处理和 DOM 元素的很相似，但是有一点语法上
 
 在 React 中，可能是这样的：
 
-```
+```js
 function ActionLink() {
   function handleClick(e) {
     e.preventDefault();
@@ -373,7 +373,7 @@ ReactDOM.render(
 
 如果觉得使用 `bind` 很麻烦，这里有两种方式可以解决。如果你正在使用实验性的 [public class fields 语法](https://babeljs.io/docs/plugins/transform-class-properties/)，你可以使用 class fields 正确的绑定回调函数：
 
-```
+```js
 class LoggingButton extends React.Component {
   // 此语法确保 `handleClick` 内的 `this` 已被绑定。
   // 注意: 这是 *实验性* 语法。
@@ -395,7 +395,7 @@ class LoggingButton extends React.Component {
 
 如果你没有使用 class fields 语法，你可以在回调中使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)：
 
-```
+```js
 class LoggingButton extends React.Component {
   handleClick() {
     console.log('this is:', this);
@@ -450,7 +450,7 @@ ReactDOM.render(
 
 你可以使用变量来储存元素。 它可以帮助你有条件地渲染组件的一部分，而其他的渲染部分并不会因此而改变。
 
-```
+```js
 function LoginButton(props) {
   return (
     <button onClick={props.onClick}>
@@ -472,7 +472,7 @@ function LogoutButton(props) {
 
 它将根据当前的状态来渲染 `` 或者 ``。同时它还会渲染上一个示例中的 ``。
 
-```
+```js
 class LoginControl extends React.Component {
   constructor(props) {
     super(props);
@@ -518,7 +518,7 @@ ReactDOM.render(
 
 通过花括号包裹代码，你可以[在 JSX 中嵌入任何表达式](https://react.docschina.org/docs/introducing-jsx.html#embedding-expressions-in-jsx)。这也包括 JavaScript 中的逻辑与 (&&) 运算符。它可以很方便地进行元素的条件渲染。	
 
-```
+```js
 function Mailbox(props) {
   const unreadMessages = props.unreadMessages;
   return (
@@ -542,7 +542,7 @@ ReactDOM.render(
 
 **三目运算符**
 
-```
+```js
 render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
@@ -553,7 +553,7 @@ render() {
 }
 ```
 
-```
+```js
 render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
@@ -574,7 +574,7 @@ render() {
 
 下面的示例中，`` 会根据 prop 中 `warn` 的值来进行条件渲染。如果 `warn` 的值是 `false`，那么组件则不会渲染:
 
-```
+```js
 function WarningBanner(props) {
   if (!props.warn) {
     return null;
