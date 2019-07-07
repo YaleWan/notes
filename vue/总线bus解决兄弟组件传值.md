@@ -4,7 +4,7 @@
 
 封装一个`Bus.js`
 
-```js
+``` js
 import Vue from 'vue'
 const Bus = new Vue()
 export default Bus 
@@ -14,7 +14,7 @@ export default Bus
 
 组件一：
 
-```js
+``` js
 import Bus from './Bus'
 
   export default {
@@ -33,7 +33,7 @@ import Bus from './Bus'
 
 组件二：
 
-```js
+``` js
 import Bus from './Bus'
 
   export default {
