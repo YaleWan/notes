@@ -2,7 +2,7 @@
 
 ##  1. jsx语法
 
-```js
+``` js
 const element = <h1>Hello, world!</h1>;
 ```
 
@@ -14,7 +14,7 @@ const element = <h1>Hello, world!</h1>;
 <div id="root"></div>
 ```
 
-```js
+``` js
 const element = <h1>Hello, world</h1>;
 ReactDOM.render(element, document.getElementById('root'));
 ```
@@ -23,7 +23,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
 + **函数组件**
 
-  ```js
+  ``` js
   function Welcome(props) {
     return <h1>Hello, {props.name}</h1>;
   }
@@ -31,7 +31,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
 + **ES6中的class组件**
 
-  ```js
+  ``` js
   class Welcome extends React.Component {
     render() {
       return <h1>Hello, {this.props.name}</h1>;
@@ -41,7 +41,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
 + **渲染组件**
 
-  ```js
+  ``` js
   function Welcome(props) {
     return <h1>Hello, {props.name}</h1>;
   }
@@ -59,7 +59,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
   封装时钟
 
-```js
+``` js
   function Clock(props) {
     return (
       <div>
@@ -95,7 +95,7 @@ ReactDOM.render(element, document.getElementById('root'));
   - 在 `render()` 方法中使用 `this.props` 替换 `props`。
   - 删除剩余的空函数声明。
 
-  ```js
+  ``` js
   class Clock extends React.Component {
     render() {
       return (
@@ -116,7 +116,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
   - 添加一个 `class 构造函数`，然后在该函数中为 `this.state` 赋初值：
 
-    ```js
+    ``` js
     class Clock extends React.Component {
       constructor(props) {
         super(props);
@@ -136,7 +136,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
   - 移除 `<Clock />`元素中的 `date` 属性:
 
-    ```js
+    ``` js
     ReactDOM.render(
       <Clock />,
       document.getElementById('root')
@@ -153,7 +153,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
   我们可以为 class 组件声明一些特殊的方法，当组件挂载或卸载时就会去执行这些方法：
 
-  ```js
+  ``` js
   class Clock extends React.Component {
     constructor(props) {
       super(props);
@@ -197,12 +197,12 @@ ReactDOM.render(element, document.getElementById('root'));
 
   - 不要直接修改state
 
-    ```js
+    ``` js
     // Wrong
     this.state.comment = 'Hello';
     ```
 
-    ```js
+    ``` js
     // Correct
     this.setState({comment: 'Hello'});
     ```
@@ -215,7 +215,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
     例如，此代码可能会无法更新计数器：
 
-    ```js
+    ``` js
     // Wrong
     this.setState({
       counter: this.state.counter + this.props.increment,
@@ -224,7 +224,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
     要解决这个问题，可以让 `setState()` 接收一个函数而不是一个对象。这个函数用上一个 state 作为第一个参数，将此次更新被应用时的 props 做为第二个参数：
 
-    ```js
+    ``` js
     // Correct
     this.setState((state, props) => ({
       counter: state.counter + props.increment
@@ -233,7 +233,7 @@ ReactDOM.render(element, document.getElementById('root'));
 
   - state的更新会被合并
 
-    ```js
+    ``` js
     constructor(props) {
       super(props);
       this.state = {
@@ -243,7 +243,7 @@ ReactDOM.render(element, document.getElementById('root'));
     }
     ```
 
-    ```js
+    ``` js
     componentDidMount() {
       fetchPosts().then(response => {
         this.setState({
@@ -269,13 +269,13 @@ ReactDOM.render(element, document.getElementById('root'));
 
   组件可以选择把它的 state 作为 props 向下传递到它的子组件中：
 
-  ```js
+  ``` js
   <FormattedDate date={this.state.date} />
   ```
 
   `FormattedDate` 组件会在其 props 中接收参数 `date`，但是组件本身无法知道它是来自于 `Clock` 的 state，或是 `Clock` 的 props，还是手动输入的：
 
-  ```js
+  ``` js
   function FormattedDate(props) {
     return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
   }
@@ -319,7 +319,7 @@ React 元素的事件处理和 DOM 元素的很相似，但是有一点语法上
 
 在 React 中，可能是这样的：
 
-```js
+``` js
 function ActionLink() {
   function handleClick(e) {
     e.preventDefault();
@@ -336,7 +336,7 @@ function ActionLink() {
 
 当你使用 `ES6 class` 语法定义一个组件的时候，通常的做法是将事件处理函数声明为 class 中的方法。例如，下面的 `Toggle` 组件会渲染一个让用户切换开关状态的按钮：
 
-```js
+``` js
 class Toggle extends React.Component {
   constructor(props) {
     super(props);
@@ -373,7 +373,7 @@ ReactDOM.render(
 
 如果觉得使用 `bind` 很麻烦，这里有两种方式可以解决。如果你正在使用实验性的 [public class fields 语法](https://babeljs.io/docs/plugins/transform-class-properties/)，你可以使用 class fields 正确的绑定回调函数：
 
-```js
+``` js
 class LoggingButton extends React.Component {
   // 此语法确保 `handleClick` 内的 `this` 已被绑定。
   // 注意: 这是 *实验性* 语法。
@@ -395,7 +395,7 @@ class LoggingButton extends React.Component {
 
 如果你没有使用 class fields 语法，你可以在回调中使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)：
 
-```js
+``` js
 class LoggingButton extends React.Component {
   handleClick() {
     console.log('this is:', this);
@@ -418,7 +418,7 @@ class LoggingButton extends React.Component {
 
 观察下面两个组件
 
-```js
+``` js
 function UserGreeting(props) {
   return <h1>Welcome back!</h1>;
 }
@@ -430,7 +430,7 @@ function GuestGreeting(props) {
 
 再创建一个 `Greeting` 组件，它会根据用户是否登录来决定显示上面的哪一个组件
 
-```js
+``` js
 function Greeting(props) {
   const isLoggedIn = props.isLoggedIn;
   if (isLoggedIn) {
@@ -450,7 +450,7 @@ ReactDOM.render(
 
 你可以使用变量来储存元素。 它可以帮助你有条件地渲染组件的一部分，而其他的渲染部分并不会因此而改变。
 
-```js
+``` js
 function LoginButton(props) {
   return (
     <button onClick={props.onClick}>
@@ -472,7 +472,7 @@ function LogoutButton(props) {
 
 它将根据当前的状态来渲染 `` 或者 ``。同时它还会渲染上一个示例中的 ``。
 
-```js
+``` js
 class LoginControl extends React.Component {
   constructor(props) {
     super(props);
@@ -518,7 +518,7 @@ ReactDOM.render(
 
 通过花括号包裹代码，你可以[在 JSX 中嵌入任何表达式](https://react.docschina.org/docs/introducing-jsx.html#embedding-expressions-in-jsx)。这也包括 JavaScript 中的逻辑与 (&&) 运算符。它可以很方便地进行元素的条件渲染。	
 
-```js
+``` js
 function Mailbox(props) {
   const unreadMessages = props.unreadMessages;
   return (
@@ -542,7 +542,7 @@ ReactDOM.render(
 
 **三目运算符**
 
-```js
+``` js
 render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
@@ -553,7 +553,7 @@ render() {
 }
 ```
 
-```js
+``` js
 render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
@@ -574,7 +574,7 @@ render() {
 
 下面的示例中，`` 会根据 prop 中 `warn` 的值来进行条件渲染。如果 `warn` 的值是 `false`，那么组件则不会渲染:
 
-```js
+``` js
 function WarningBanner(props) {
   if (!props.warn) {
     return null;
@@ -624,7 +624,7 @@ ReactDOM.render(
 
 下面，我们使用 Javascript 中的 [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 方法来遍历 `numbers` 数组。将数组中的每个元素变成`<li>` 标签，最后我们将得到的数组赋值给 `listItems`：
 
-```js
+``` js
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) =>
   <li>{number}</li>
@@ -633,7 +633,7 @@ const listItems = numbers.map((number) =>
 
 我们把整个 `listItems` 插入到 `` 元素中，然后[渲染进 DOM](https://react.docschina.org/docs/rendering-elements.html#rendering-an-element-into-the-dom)：
 
-```js
+``` js
 ReactDOM.render(
   <ul>{listItems}</ul>,
   document.getElementById('root')
@@ -644,7 +644,7 @@ ReactDOM.render(
 
 如果你提取 出一个 `ListItem` 组件，你应该把 key 保留在数组中的这个 `` 元素上，而不是放在 `ListItem` 组件中的 `` 元素上。
 
-```js
+``` js
 function ListItem(props) {
   // 正确！这里不需要指定 key：
   return <li>{props.value}</li>;
@@ -673,7 +673,7 @@ ReactDOM.render(
 
 key 会传递信息给 React ，但不会传递给你的组件。如果你的组件中需要使用 `key` 属性的值，请用其他属性名显式传递这个值：
 
-```js
+``` js
 const content = posts.map((post) =>
   <Post
     key={post.id}
@@ -688,7 +688,7 @@ const content = posts.map((post) =>
 
 在上面的例子中，我们声明了一个单独的 `listItems` 变量并将其包含在 JSX 中：
 
-```js
+``` js
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
@@ -705,7 +705,7 @@ function NumberList(props) {
 
 JSX 允许在大括号中[嵌入任何表达式](https://react.docschina.org/docs/introducing-jsx.html#embedding-expressions-in-jsx)，所以我们可以内联 `map()` 返回的结果：
 
-```js
+``` js
 function NumberList(props) {
   const numbers = props.numbers;
   return (
@@ -723,7 +723,7 @@ function NumberList(props) {
 
 **input标签**
 
-```js
+``` js
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -760,7 +760,7 @@ class NameForm extends React.Component {
 
 在 HTML 中, `` 元素通过其子元素定义其文本:
 
-```js
+``` js
 <textarea>
   你好， 这是在 text area 里的文本
 </textarea>
@@ -768,7 +768,7 @@ class NameForm extends React.Component {
 
 而在 React 中，`` 使用 `value` 属性代替。这样，可以使得使用 `` 的表单和使用单行 input 的表单非常类似：
 
-```js
+``` js
 class EssayForm extends React.Component {
   constructor(props) {
     super(props);
@@ -809,7 +809,7 @@ class EssayForm extends React.Component {
 
 在 HTML 中，`` 创建下拉列表标签。例如，如下 HTML 创建了水果相关的下拉列表：
 
-```js
+``` js
 <select>
   <option value="grapefruit">葡萄柚</option>
   <option value="lime">柠檬</option>
@@ -820,7 +820,7 @@ class EssayForm extends React.Component {
 
 请注意，由于 `selected` 属性的缘故，椰子选项默认被选中。React 并不会使用 `selected` 属性，而是在根 `select` 标签上使用 `value` 属性。这在受控组件中更便捷，因为您只需要在根标签中更新它。例如：
 
-```js
+``` js
 class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
@@ -864,7 +864,7 @@ class FlavorForm extends React.Component {
 
 例如：
 
-```js
+``` js
 class Reservation extends React.Component {
   constructor(props) {
     super(props);
@@ -918,7 +918,7 @@ class Reservation extends React.Component {
 
 我们将创建一个用于计算水在给定温度下是否会沸腾的温度计算器。
 
-```js
+``` js
 function BoilingVerdict(props) {
   if (props.celsius >= 100) {
     return <p>The water would boil.</p>;
@@ -929,7 +929,7 @@ function BoilingVerdict(props) {
 
 我们将编写两个可以在摄氏度与华氏度之间相互转换的函数：
 
-```js
+``` js
 function toCelsius(fahrenheit) {
   return (fahrenheit - 32) * 5 / 9;
 }
@@ -941,7 +941,7 @@ function toFahrenheit(celsius) {
 
 input 组件
 
-```js
+``` js
 class TemperatureInput extends React.Component {
   constructor(props) {
     super(props);
@@ -968,7 +968,7 @@ class TemperatureInput extends React.Component {
 
 计算组件
 
-```js
+``` js
 class Calculator extends React.Component {
   constructor(props) {
     super(props);
@@ -1028,7 +1028,7 @@ React 有十分强大的组合模式。我们推荐使用组合而非继承来�
 
 我们建议这些组件使用一个特殊的 `children` prop 来将他们的子组件传递到渲染结果中：
 
-```js
+``` js
 function FancyBorder(props) {
   return (
     <div className={'FancyBorder FancyBorder-' + props.color}>
@@ -1040,7 +1040,7 @@ function FancyBorder(props) {
 
 这使得别的组件可以通过 JSX 嵌套，将任意组件作为子组件传递给它们。
 
-```js
+``` js
 function WelcomeDialog() {
   return (
     <FancyBorder color="blue">
@@ -1061,7 +1061,7 @@ function WelcomeDialog() {
 
 在 React 中，我们也可以通过组合来实现这一点。“特殊”组件可以通过 props 定制并渲染“一般”组件：
 
-```js
+``` js
 function Dialog(props) {
   return (
     <FancyBorder color="blue">
@@ -1111,7 +1111,7 @@ function WelcomeDialog() {
 
 ### 第二步：用 React 创建一个静态版本
 
-```js
+``` js
 class ProductCategoryRow extends React.Component {
   render() {
     const category = this.props.category;
@@ -1245,7 +1245,7 @@ ReactDOM.render(
 
 ### 第五步：添加反向数据流
 
-```js
+``` js
 class ProductCategoryRow extends React.Component {
   render() {
     const category = this.props.category;
