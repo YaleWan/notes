@@ -21,3 +21,21 @@
 ## git merge
 
 - 用于合并分支或者某次提交 一般用于将分支或修改的内容合并到master上
+
+## git add
+
+- 用于将修改的文件添加到暂存区
+- `git add .`会把所有的文件都加入到暂存区 **忽略.gitignore**
+
+## git commit 
+
+- 将暂存区的代码提交到代码库
+- `git commit -m'提交信息`
+
+## git log 
+
+- 显示从最近到最远的提交日志，可以看到最近的三次提交
+
+- `git log --pretty=oneline`如果嫌输入的信息太多，
+
+  ​
